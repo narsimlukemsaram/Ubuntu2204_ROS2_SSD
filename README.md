@@ -78,6 +78,7 @@ You can choose either one. If you choose Try Ubuntu, Ubuntu will load from your 
 After restarting your computer, the Ubuntu dual boot menu will be shown.
 
 Reference:
+
 https://medium.com/@abrarahmedsyed/how-to-create-a-truly-portable-plug-n-play-ubuntu-installation-on-an-external-ssd-hdd-7aaadc7d796a
 
 ## Step 2: Installation of ROS2 Humble on Ubuntu 22.04 on an External SSD and Dual Boot with Windows 11
@@ -180,5 +181,6 @@ nano ~/.bashrc
 ```
 
 Reference:
-[https://medium.com/@abrarahmedsyed/how-to-create-a-truly-portable-plug-n-play-ubuntu-installation-on-an-external-ssd-hdd-7aaadc7d796a](https://medium.com/spinor/getting-started-with-ros2-install-and-setup-ros2-humble-on-ubuntu-22-04-lts-ad718d4a3ac2)
+
+https://medium.com/spinor/getting-started-with-ros2-install-and-setup-ros2-humble-on-ubuntu-22-04-lts-ad718d4a3ac2
 
