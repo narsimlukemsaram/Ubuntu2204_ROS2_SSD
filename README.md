@@ -1,7 +1,7 @@
 # Ubuntu2204_ROS2_SSD
 Install Ubuntu 22.04 ROS2 Humble on an External SSD and Dual Boot with Windows 11
 
-# Install Ubuntu 22.04 ROS2 Humble on an External SSD and Dual Boot with Windows 11
+# Install Ubuntu 22.04 on an External SSD and Dual Boot with Windows 11
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -79,3 +79,106 @@ After restarting your computer, the Ubuntu dual boot menu will be shown.
 
 Reference:
 https://medium.com/@abrarahmedsyed/how-to-create-a-truly-portable-plug-n-play-ubuntu-installation-on-an-external-ssd-hdd-7aaadc7d796a
+
+## Step 2: Installation of ROS2 Humble on Ubuntu 22.04 on an External SSD and Dual Boot with Windows 11
+
+**1. Set locale**
+
+```bash
+locale  # check for UTF-8
+
+sudo apt update && sudo apt install locales
+sudo locale-gen en_US en_US.UTF-8
+sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+locale  # verify settings
+```
+**2. Setup Sources**
+
+To add the ROS 2 apt repository, ensure the Ubuntu Universe repository is enabled.
+
+```bash
+sudo apt install software-properties-common
+sudo add-apt-repository universe
+```
+
+Add the ROS 2 GPG key with apt.
+
+```bash
+sudo apt update && sudo apt install curl -y
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+```
+
+Then add the repository to your sources list.
+
+```bash
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+```
+
+**3. Install ROS 2 packages**
+
+After setting up the repositories, update your apt repository caches. This ensures your system is up to date before installing ROS 2 packages.
+
+```bash
+sudo apt update
+sudo apt upgrade
+```
+
+**4. Install ROS 2 packages**
+
+Generally, the “ros-humble-desktop” is installed on the Ground Control and Simulation System (our Desktop/Laptop), and the “ros-humble-ros-base” is installed on the Robot Computer(Raspberry Pi).
+
+Here, we will install Desktop ROS Humble on Ubuntu 22.04:
+
+```bash
+sudo apt install ros-humble-desktop
+```
+
+**5. Install ROS2 Development tools**
+
+Install the development tools: Compilers and other tools to build ROS packages.
+
+```bash
+sudo apt install ros-dev-tools
+```
+
+**6. Environment setup**
+
+To start working on ROS 2, first, you need to source the setup script in each terminal session.
+
+```bash
+source /opt/ros/humble/setup.bash
+```
+
+**7. Test with running talker-listener example**
+
+In one terminal, source the setup file and then run a Python talker:
+
+```bash
+source /opt/ros/humble/setup.bash
+ros2 run demo_nodes_py talker
+```
+
+In another terminal source the setup file and then run a Python listener:
+
+```bash
+source /opt/ros/humble/setup.bash
+ros2 run demo_nodes_py listener
+```
+
+Stop both scripts using Ctrl+C.
+
+**8. Automate the environment setup process**
+
+To automate the environment setup process and avoid sourcing the setup file manually each time, we can add the command to source the setup file in the “.bashrc” file. This way, the command will be executed automatically every time we open a new terminal or SSH session.
+
+Edit the .bashrc file and add the command `source /opt/ros/humble/setup.bash` at the end of the file.:
+
+```bash
+nano ~/.bashrc
+```
+
+Reference:
+[https://medium.com/@abrarahmedsyed/how-to-create-a-truly-portable-plug-n-play-ubuntu-installation-on-an-external-ssd-hdd-7aaadc7d796a](https://medium.com/spinor/getting-started-with-ros2-install-and-setup-ros2-humble-on-ubuntu-22-04-lts-ad718d4a3ac2)
+
