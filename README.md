@@ -1,2 +1,80 @@
 # Ubuntu2204_ROS2_SSD
 Install Ubuntu 22.04 ROS2 Humble on an External SSD and Dual Boot with Windows 11
+
+# Install Ubuntu 22.04 ROS2 Humble on an External SSD and Dual Boot with Windows 11
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Step 1: Installation of Ubuntu 22.04
+
+**1. Pre-requisites**:
+- A Windows 11 or higher computer
+- At least 25 GB of free disk space for Ubuntu 22.04
+- A USB drive with at least 8GB
+- Internet connection
+- A freshly formatted External SSD drive. I bought a Samsung 980 Pro M2 SSD with 500 GB storage.
+- Make sure you back up your computer (especially personal files, but also your OS) in case something bad happens, which can be the case since we are going to do a lot of formatting, partitioning, and changing BIOS/UEFL settings.
+
+**2. Disable Secure Boot**:
+
+For some computers, `Secure Boot` will still prevent you from installing or booting new operating systems. 
+To disable this:
+    - Turn your computer OFF. Then, turn it back ON and press the BIOS entry key during the boot process. This varies between hardware types, but is generally F1, F2, F12 …
+    - Find the **Secure Boot** option. If possible, set it to **Disabled**. It is usually found in the Security tab, Boot tab, or Authentication tab.
+    - **Save and Exit**. Your system will reboot.
+
+Reference:
+    [How to Disable UEFI Secure Boot to Dual Boot Any System](https://www.makeuseof.com/tag/disable-secure-uefi-dual-boot/)
+
+**3. Create a new partition on your Windows computer for Ubuntu**:
+- Click ***Win + R*** and type ***cmd*** to open the terminal
+- Type `diskmgmt.msc` and enter to open the Disk management
+- Right click the disk and format it
+
+**4. Download Ubuntu 22.04 Image**:
+Download ***Ubuntu 22.04*** from the official website, select ***64-bit PC (AMD64) desktop image***
+
+[Ubuntu 22.04.6 LTS (Focal Fossa)](https://releases.ubuntu.com/focal/)
+
+**5. Download Rufus Software**:
+***Rufus*** software is to make your USB drive bootable, select the ***Standard*** type with your computer platform.
+
+[Rufus - Create bootable USB drives the easy way](https://rufus.ie/en/)
+
+For most of you, choose the standard one with the platform Windows x64.
+
+**6. Format the USB drive and make it bootable**:
+- Insert your USB into the USB port
+- In the File Explorer, right-click your USB and select ***Format*** option, and follow the instructions
+- Right click the ***Rufus*** and run as an administrator
+- Leave everything default, click ***SELECT*** option and select the ISO image file just downloaded (ubuntu-22.04.6-desktop-amd64.iso).
+- Click ***START*** and follow the steps
+
+**7. Install Ubuntu 22.04 Dual Boot**:
+- Restart the computer. Press F11 (the button might be different for different computer brands, search for how to enter the ***Boot Menu*** for yours)
+- Choose the USB drive as the boot device.
+- Restart the computer it will automatically boot from the USB stick with the Ubuntu installation media.
+
+**8. Once you have booted into Ubuntu, choose ‘Try or Install Ubuntu’ from Grub MENU
+
+Now you can connect your external drive to your PC.
+
+**9. After a while, a loader with options of “Try Ubuntu” and “Install Ubuntu” will come up. You can choose either one. If you choose Try Ubuntu, Ubuntu will load from your USB for the time being, and on the desktop there is a shortcut to “Install Ubuntu”. I personally prefer this way because the fonts appear much bigger, and you can do other things on the temporary Ubuntu while the installation is ongoing.
+
+**10. Follow the instructions to go ahead.**:
+ 
+- In ***Update and other software*** tab, it is recommended to select ***Normal installation*** and tick both of the two ***Other options***
+- In the screenshot below — my external and portable drive is identified as /dev/sdb2 — and it is currently unpartitioned. Unmount (right click and unmount) any currently mounted partitions on this drive and delete all partitions (again — be double sure you’re working on the correct drive).
+
+**11. Now, you can click on Install Ubuntu icon, and proceed towards installing until you encounter the ‘Installation Type’ window**:
+
+- Click on ‘Something else’ and proceed
+
+Now that we’re on the ‘Something else’ installation type screen — scroll down the list of available drive volumes until you see your device and the partitions we previously created. In this example /dev/sdb1, /dev/sdb2, and /dev/sdb3.
+
+- Lastly, still in the installation type tab, change the device for boot loader installation to the same device as your root partition. After all, click ***Install Now*** and follow the instructions on your screen
+
+After restarting your computer, the Ubuntu dual boot menu will be shown.
+
+Reference:
+https://medium.com/@abrarahmedsyed/how-to-create-a-truly-portable-plug-n-play-ubuntu-installation-on-an-external-ssd-hdd-7aaadc7d796a
