@@ -12,7 +12,7 @@ Install Ubuntu 22.04 ROS2 Humble on an External SSD and Dual Boot with Windows 1
 - At least 25 GB of free disk space for Ubuntu 22.04
 - A USB drive with at least 8GB
 - Internet connection
-- A freshly formatted External SSD drive. I bought a Samsung 980 Pro M2 SSD with 500 GB storage.
+- A freshly formatted External SSD drive. I bought a Samsung 980 Pro M2 SSD with 500 GB storage. Ensure you have a high read/write speed because your operating system performance can be bottlenecked by it (minimum 1050MB/s).
 - Make sure you back up your computer (especially personal files, but also your OS) in case something bad happens, which can be the case since we are going to do a lot of formatting, partitioning, and changing BIOS/UEFL settings.
 
 **2. Disable Secure Boot**:
@@ -55,22 +55,23 @@ For most of you, choose the standard one with the platform Windows x64.
 - Choose the USB drive as the boot device.
 - Restart the computer it will automatically boot from the USB stick with the Ubuntu installation media.
 
-**8. Once you have booted into Ubuntu, choose ‘Try or Install Ubuntu’ from Grub MENU
+**8. Once you have booted into Ubuntu, choose ‘Try or Install Ubuntu’ from Grub MENU**:
 
-Now you can connect your external drive to your PC.
+Now, you can connect your external drive to your PC.
 
-**9. After a while, a loader with options of “Try Ubuntu” and “Install Ubuntu” will come up. You can choose either one. If you choose Try Ubuntu, Ubuntu will load from your USB for the time being, and on the desktop there is a shortcut to “Install Ubuntu”. I personally prefer this way because the fonts appear much bigger, and you can do other things on the temporary Ubuntu while the installation is ongoing.
+**9. After a while, a loader with options of “Try Ubuntu” and “Install Ubuntu” will come up**:
+You can choose either one. If you choose Try Ubuntu, Ubuntu will load from your USB for the time being, and on the desktop there is a shortcut to “Install Ubuntu”. I personally prefer this method because the fonts appear much bigger, and you can do other things with the temporary Ubuntu while the installation is ongoing.
 
 **10. Follow the instructions to go ahead.**:
  
 - In ***Update and other software*** tab, it is recommended to select ***Normal installation*** and tick both of the two ***Other options***
 - In the screenshot below — my external and portable drive is identified as /dev/sdb2 — and it is currently unpartitioned. Unmount (right click and unmount) any currently mounted partitions on this drive and delete all partitions (again — be double sure you’re working on the correct drive).
 
-**11. Now, you can click on Install Ubuntu icon, and proceed towards installing until you encounter the ‘Installation Type’ window**:
+**11. Now, you can click on the Install Ubuntu icon and proceed towards installing until you encounter the ‘Installation Type’ window**:
 
 - Click on ‘Something else’ and proceed
 
-Now that we’re on the ‘Something else’ installation type screen — scroll down the list of available drive volumes until you see your device and the partitions we previously created. In this example /dev/sdb1, /dev/sdb2, and /dev/sdb3.
+  Now that we’re on the ‘Something else’ installation type screen — scroll down the list of available drive volumes until you see your device and the partitions we previously created. In this example /dev/sdb1, /dev/sdb2, and /dev/sdb3.
 
 - Lastly, still in the installation type tab, change the device for boot loader installation to the same device as your root partition. After all, click ***Install Now*** and follow the instructions on your screen
 
